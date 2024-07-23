@@ -1,0 +1,27 @@
+[project]
+name = "llm-gguf"
+version = "0.1"
+description = "Run models distributed as GGUF files"
+readme = "README.md"
+authors = [{name = "Simon Willison"}]
+license = {text = "Apache-2.0"}
+classifiers = [
+    "License :: OSI Approved :: Apache Software License"
+]
+dependencies = [
+    "httpx",
+    "llm",
+    "llama-cpp-python",
+]
+
+[project.urls]
+Homepage = "https://github.com/simonw/llm-gguf"
+Changelog = "https://github.com/simonw/llm-gguf/releases"
+Issues = "https://github.com/simonw/llm-gguf/issues"
+CI = "https://github.com/simonw/llm-gguf/actions"
+
+[project.entry-points.llm]
+gguf = "llm_gguf"
+
+[project.optional-dependencies]
+test = ["pytest"]
