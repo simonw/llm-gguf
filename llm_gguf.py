@@ -126,7 +126,10 @@ def register_commands(cli):
         models_file = _ensure_models_file()
         models = json.loads(models_file.read_text())
         for model, info in models.items():
-            info["size"] = human_size(pathlib.Path(info["path"]).stat().st_size)
+            try:
+                info["size"] = human_size(pathlib.Path(info["path"]).stat().st_size)
+            except FileNotFoundError:
+                info["size"] = None
         click.echo(json.dumps(models, indent=2))
 
 
