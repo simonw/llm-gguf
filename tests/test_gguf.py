@@ -22,7 +22,7 @@ def test_embed_with_tiny_model(monkeypatch):
     if not model_path.exists():
         result = runner.invoke(cli, ["gguf", "download-embed-model", EMBED_URL])
         assert result.exit_code == 0
-        assert "Downloaded" in result.output
+        assert "Download" in result.output
     # Model should exist
     assert model_path.exists()
     # Try to embed "hello world"
