@@ -10,3 +10,4 @@ venv
 .vscode
 dist
 build
+test-llm-user-dir
