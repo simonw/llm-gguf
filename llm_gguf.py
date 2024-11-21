@@ -318,7 +318,7 @@ class GgufEmbeddingModel(llm.EmbeddingModel):
             self._model = Llama(
                 model_path=self.model_path, embedding=True, verbose=False
             )
-        results = self._model.create_embedding(texts)
+        results = self._model.create_embedding(list(texts))
         return [result["embedding"] for result in results["data"]]
 
 
