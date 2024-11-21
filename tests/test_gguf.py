@@ -30,5 +30,8 @@ def test_embed_with_tiny_model(monkeypatch):
         cli, ["embed", "-c", "hello world", "-m", "gguf/mxbai-embed-xsmall-v1-q8_0"]
     )
     assert result2.exit_code == 0, result2.output
-    vector = json.loads(result2.output)
+    try:
+        vector = json.loads(result2.output)
+    except json.JSONDecodeError:
+        assert False, result2.output
     assert len(vector) == 384
