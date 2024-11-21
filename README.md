@@ -63,6 +63,36 @@ This plugin **currently only works with chat models** - these are usually distri
 
 For non-chat models you may have better luck with the older [llm-llama-cpp plugin](https://github.com/simonw/llm-llama-cpp).
 
+## Embedding models
+
+This plugin also supports [embedding models](https://llm.datasette.io/en/stable/embeddings/index.html) that are distributed as GGUFs.
+
+These are managed using the `llm gguf embed-models`, `llm gguf download-embed-model` and `llm gguf register-embed-model` commands.
+
+For example, to start using the excellent and tiny [mxbai-embed-xsmall-v1](https://huggingface.co/mixedbread-ai/mxbai-embed-xsmall-v1) model you can download the 30.8MB GGUF version like this:
+
+```bash
+llm gguf download-embed-model \
+  https://huggingface.co/mixedbread-ai/mxbai-embed-xsmall-v1/resolve/main/gguf/mxbai-embed-xsmall-v1-q8_0.gguf
+```
+This will store the model in the directory shown if you run `llm gguf models-dir`.
+
+Confirm that the new model is available by running this:
+
+```bash
+llm embed-models
+```
+You should see `gguf/mxbai-embed-xsmall-v1-q8_0` in the list.
+
+Then try that model out like this:
+
+```bash
+llm embed -m gguf/mxbai-embed-xsmall-v1-q8_0 -c 'hello'
+```
+This will output a 384 element floating point JSON array.
+
+Consult the [LLM documentation](https://llm.datasette.io/en/stable/embeddings/index.html) for more information on how to use these embeddings.
+
 ## Development
 
 To set up this plugin locally, first checkout the code. Then create a new virtual environment:
