@@ -17,7 +17,7 @@ EMBED_URL = (
 
 def test_embed_with_tiny_model(monkeypatch):
     monkeypatch.setenv("LLM_USER_PATH", str(TEST_USER_DIR))
-    runner = CliRunner()
+    runner = CliRunner(mix_stderr=False)
     model_path = TEST_USER_DIR / "gguf" / "models" / "mxbai-embed-xsmall-v1-q8_0.gguf"
     if not model_path.exists():
         result = runner.invoke(cli, ["gguf", "download-embed-model", EMBED_URL])
